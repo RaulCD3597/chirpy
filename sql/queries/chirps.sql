@@ -12,6 +12,7 @@ RETURNING *;
 -- name: GetChirps :many
 SELECT *
   FROM chirps
+  WHERE (user_id = sqlc.narg('author_id') OR sqlc.narg('author_id') IS NULL)
   ORDER BY created_at ASC;
 
 -- name: GetChirp :one
